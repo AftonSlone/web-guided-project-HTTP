@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import ItemDescription from './ItemDescription';
@@ -27,7 +27,8 @@ function Item(props) {
   const handleDeleteClick = () => {
     axios.delete(`http://localhost:3333/items/${id}`)
       .then(res=>{
-        console.log(res);
+        setItem(res.data);
+
       })
       .catch(err => {
         console.log(err);
