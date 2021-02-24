@@ -31,13 +31,13 @@ const App = () => {
       <nav>
         <h1 className="store-header">Dustin's Trinkets</h1>
         <div className="nav-links">
-          <NavLink exact to="/item-form">
+          <Link exact to="/item-form">
             Add Item
-          </NavLink>
-          <NavLink exact to="/">
+          </Link>
+          <Link exact to="/">
             Home
-          </NavLink>
-          <NavLink to="/item-list">Shop</NavLink>
+          </Link>
+          <Link to="/item-list">Shop</Link>
         </div>
       </nav>
 
