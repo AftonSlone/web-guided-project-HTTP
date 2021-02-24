@@ -8,7 +8,6 @@ import ItemShipping from './ItemShipping';
 function Item(props) {
   const [item, setItem] = useState({});
   const { id } = useParams();
-  const { push } = useHistory();
 
   useEffect(()=>{
     axios.get(`http://localhost:3333/items/${id}`)
@@ -22,14 +21,14 @@ function Item(props) {
   }
 
   const handleEditClick = ()=> {
-      push(`/item-update/${id}`);
+      props.history.push(`/item-update/${id}`);
   }
 
   const handleDeleteClick = () => {
     axios.delete(`http://localhost:3333/items/${id}`)
       .then(res=>{
         setItem(res.data);
-        push('/item-list');
+
       })
       .catch(err => {
         console.log(err);
