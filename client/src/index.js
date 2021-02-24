@@ -41,9 +41,8 @@ const App = () => {
         </div>
       </nav>
 
-      <Route exact path="/" component={Home} />
+      <Route path="/" component={Home} />
       <Route
-        exact
         path="/item-list"
         render={props => <ItemsList {...props} items={items} />}
       />
