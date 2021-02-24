@@ -37,7 +37,7 @@ const UpdateForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.
+    axios.put(`http://localhost:3333/items/${id}`, item)
   };
 
   return (
