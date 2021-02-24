@@ -27,8 +27,8 @@ function Item(props) {
   const handleDeleteClick = () => {
     axios.delete(`http://localhost:3333/items/${id}`)
       .then(res=>{
-        setItems(res.data);
-        props.history.push('\item-list');
+        props.setItems(res.data);
+        props.history.push('/item-list');
       })
       .catch(err => {
         console.log(err);
