@@ -49,8 +49,6 @@ const UpdateForm = props => {
       });
   };
 
-  console.log(props);
-
   return (
     <div>
       <h2>Update Item</h2>
