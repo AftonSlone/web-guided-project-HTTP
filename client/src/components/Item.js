@@ -20,8 +20,12 @@ function Item(props) {
     return <h2>Loading item data...</h2>;
   }
 
-  const handleEditClick = ()=>{
+  const handleEditClick = ()=> {
       props.history.push(`/item-update/${id}`);
+  }
+
+  const handleDeleteClick = () => {
+
   }
 
   return (
