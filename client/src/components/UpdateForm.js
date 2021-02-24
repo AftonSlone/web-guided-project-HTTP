@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -13,6 +13,12 @@ const initialItem = {
 const UpdateForm = props => {
   const [item, setItem] = useState(initialItem);
 
+  useEffect(()=>{
+    axios.get()
+    .then()
+    .catch()
+  }, []);
+  
   const changeHandler = ev => {
     ev.persist();
     let value = ev.target.value;
