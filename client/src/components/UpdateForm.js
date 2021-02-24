@@ -41,6 +41,7 @@ const UpdateForm = props => {
       .then(res=>{
         console.log('update props: ', props);
         console.log(res.data);
+        props.setItems(res.data);
       })
       .catch(err=>{
         console.log(err);
