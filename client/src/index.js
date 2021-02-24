@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, NavLink, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import axios from "axios";
 
 import Home from "./components/Home";
@@ -31,13 +31,13 @@ const App = () => {
       <nav>
         <h1 className="store-header">Dustin's Trinkets</h1>
         <div className="nav-links">
-          <Link exact to="/item-form">
+          <NavLink exact to="/item-form">
             Add Item
-          </Link>
-          <Link exact to="/">
+          </NavLink>
+          <NavLink exact to="/">
             Home
-          </Link>
-          <Link to="/item-list">Shop</Link>
+          </NavLink>
+          <NavLink to="/item-list">Shop</NavLink>
         </div>
       </nav>
 
