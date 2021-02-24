@@ -3,9 +3,9 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const initialItem = {
-  name: "",
+  name: "sadafsafs",
   price: "",
-  imageUrl: "",
+  imageUrl: "asdfsadafas",
   description: "",
   shipping: ""
 };
@@ -29,6 +29,8 @@ const UpdateForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
   };
+
+  console.log(item);
 
   return (
     <div>
