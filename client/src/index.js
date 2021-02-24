@@ -41,24 +41,25 @@ const App = () => {
         </div>
       </nav>
 
-      <Route exact path="/" component={Home} />
+      <Switch>
+          <Route path="/" component={Home} />
 
-      <Route
-        exact
-        path="/item-list"
-        render={props => <ItemsList {...props} items={items} />}
-      />
+          <Route
+            path="/item-list"
+            render={props => <ItemsList {...props} items={items} />}
+          />
 
-      <Route
-        path="/item-list/:id"
-        render={props => <Item {...props} setItems={setItems} />}
-      />
+          <Route
+            path="/item-list/:id"
+            render={props => <Item {...props} setItems={setItems} />}
+          />
 
-      <Route path="/item-form" component={ItemForm} />
+          <Route path="/item-form" component={ItemForm} />
 
-      <Route path="/item-update/:id" render={(props)=>{
-        return(<UpdateForm {...props} setItems={setItems}/>);
-      }} />
+          <Route path="/item-update/:id" render={(props)=>{
+            return(<UpdateForm {...props} setItems={setItems}/>);
+          }} />
+      </Switch>
 
       {/* <Route path="/item-form">
         <UpdateForm setItems={setItems}/>
