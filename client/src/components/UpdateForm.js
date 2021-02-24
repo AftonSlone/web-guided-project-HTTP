@@ -12,7 +12,7 @@ const initialItem = {
 
 const UpdateForm = props => {
   const [item, setItem] = useState(initialItem);
-  
+
   const { id } = useParams();
   const { push } = useHistory();
 
@@ -48,6 +48,8 @@ const UpdateForm = props => {
         console.log(err);
       });
   };
+
+  console.log(props);
 
   return (
     <div>
