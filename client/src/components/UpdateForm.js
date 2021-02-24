@@ -3,9 +3,9 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const initialItem = {
-  name: "sadafsafs",
+  name: "",
   price: "",
-  imageUrl: "asdfsadafas",
+  imageUrl: "",
   description: "",
   shipping: ""
 };
