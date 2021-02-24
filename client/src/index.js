@@ -41,11 +41,14 @@ const App = () => {
         </div>
       </nav>
 
-      <Route path="/" component={Home} />
+      <Route exact path="/" component={Home} />
+
       <Route
+        exact
         path="/item-list"
         render={props => <ItemsList {...props} items={items} />}
       />
+
       <Route
         path="/item-list/:id"
         render={props => <Item {...props} setItems={setItems} />}
