@@ -15,7 +15,9 @@ const UpdateForm = props => {
 
   useEffect(()=>{
     axios.get('http://localhost:3333/items/0')
-    .then()
+    .then((res)=>{
+      console.log(res);
+    })
     .catch()
   }, []);
   
@@ -35,8 +37,6 @@ const UpdateForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
   };
-
-  console.log(item);
 
   return (
     <div>
