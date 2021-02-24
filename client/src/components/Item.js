@@ -25,7 +25,13 @@ function Item(props) {
   }
 
   const handleDeleteClick = () => {
-
+    axios.delete(`http://localhost:3333/item/${id}`)
+      .then(res=>{
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   return (
