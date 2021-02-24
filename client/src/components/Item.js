@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, NavLink, useHistory } from 'react-router-dom';
+import { Route, NavLink, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import ItemDescription from './ItemDescription';
@@ -7,7 +7,8 @@ import ItemShipping from './ItemShipping';
 
 function Item(props) {
   const [item, setItem] = useState({});
-  const { id } = props.match.params;
+  const { id } = useParams();
+  const { push } = useHistory();
 
   useEffect(()=>{
     axios.get(`http://localhost:3333/items/${id}`)
@@ -21,14 +22,14 @@ function Item(props) {
   }
 
   const handleEditClick = ()=> {
-      props.history.push(`/item-update/${id}`);
+      push(`/item-update/${id}`);
   }
 
   const handleDeleteClick = () => {
     axios.delete(`http://localhost:3333/items/${id}`)
       .then(res=>{
         setItem(res.data);
-
+        push('/item-list');
       })
       .catch(err => {
         console.log(err);
