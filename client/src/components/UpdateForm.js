@@ -13,6 +13,7 @@ const initialItem = {
 const UpdateForm = props => {
   const [item, setItem] = useState(initialItem);
   const { id } = useParams();
+  const { push } = useHistory();
 
   useEffect(()=>{
     axios.get(`http://localhost:3333/items/${id}`)
@@ -40,7 +41,7 @@ const UpdateForm = props => {
     axios.put(`http://localhost:3333/items/${id}`, item)
       .then(res=>{
         props.setItems(res.data);
-        useHistory().push(`/item-list/${id}`);
+        props.history.push(`/item-list/${id}`);
       })
       .catch(err=>{
         console.log(err);
