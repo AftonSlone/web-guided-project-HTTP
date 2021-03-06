@@ -1,25 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Route, NavLink, useHistory } from "react-router-dom";
+import axios from "axios";
 
-import ItemDescription from './ItemDescription';
-import ItemShipping from './ItemShipping';
+import ItemDescription from "./ItemDescription";
+import ItemShipping from "./ItemShipping";
 
 function Item(props) {
   const [item, setItem] = useState({});
   const { id } = props.match.params;
+  const { push } = useHistory();
 
   console.log();
-  useEffect(()=>{
-    axios.get(`http://localhost:3333/items/${id}`)
-      .then(res=>{
-        setItem(res.data);
-      });
+  useEffect(() => {
+    axios.get(`http://localhost:3333/items/${id}`).then((res) => {
+      setItem(res.data);
+    });
   }, []);
 
   if (!item) {
     return <h2>Loading item data...</h2>;
   }
+
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:3333/items/${id}`)
+      .then((res) => {
+        props.setItems(res.data);
+        push("/item-list");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="item-wrapper">
@@ -41,16 +53,21 @@ function Item(props) {
       <Route
         exact
         path="/item-list/:id"
-        render={props => <ItemDescription {...props} item={item} />}
+        render={(props) => <ItemDescription {...props} item={item} />}
       />
       <Route
         path="/item-list/:id/shipping"
-        render={props => <ItemShipping {...props} item={item} />}
+        render={(props) => <ItemShipping {...props} item={item} />}
       />
-      <button className="md-button">
+      <button
+        onClick={() => {
+          props.history.push(`/item-update/${item.id}`);
+        }}
+        className="md-button"
+      >
         Edit
       </button>
-      <button className="md-button">
+      <button onClick={handleDelete} className="md-button">
         Delete
       </button>
     </div>

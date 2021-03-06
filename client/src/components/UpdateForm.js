@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -7,13 +7,23 @@ const initialItem = {
   price: "",
   imageUrl: "",
   description: "",
-  shipping: ""
+  shipping: "",
 };
 
-const UpdateForm = props => {
+const UpdateForm = (props) => {
+  const { push } = useHistory();
   const [item, setItem] = useState(initialItem);
+  const { id } = useParams();
 
-  const changeHandler = ev => {
+  console.log(id);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3333/items/${id}`).then((res) => {
+      setItem(res.data);
+    });
+  }, []);
+
+  const changeHandler = (ev) => {
     ev.persist();
     let value = ev.target.value;
     if (ev.target.name === "price") {
@@ -22,12 +32,19 @@ const UpdateForm = props => {
 
     setItem({
       ...item,
-      [ev.target.name]: value
+      [ev.target.name]: value,
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .put(`http://localhost:3333/items/${id}`, item)
+      .then((res) => {
+        props.setItems(res.data);
+        push(`/item-list/${id}`);
+      })
+      .catch(() => {});
   };
 
   return (
